@@ -1,0 +1,10 @@
+[package]
+name = "try_wrap_ok"
+version = "0.1.0"
+authors = ["Thomas BESSOU <thomas.bessou@hotmail.fr>"]
+edition = "2018"
+description = "`?` or `try!` macro, with an additional `Ok` wrapping"
+repository = "https://github.com/Ten0/rust-shell_command"
+license = "LGPL-3.0-only"
+
+[dependencies]
