@@ -1,5 +1,8 @@
 # try_wrap_ok
 
+[![Crates.io](https://img.shields.io/crates/v/try_wrap_ok.svg)](https://crates.io/crates/try_wrap_ok)
+[![License](https://img.shields.io/github/license/Ten0/rust-try_wrap_ok)](LICENSE)
+
 This crate provides a macro similar to the old `try!` macro, or to the `?`, except it wraps
 the error in an additional Ok.
 
