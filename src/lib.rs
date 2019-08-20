@@ -1,5 +1,5 @@
 //! This crate provides a macro similar to the old `try!` macro, or to the `?`, except it wraps
-//! the error in an additional Ok.
+//! the error in an additional `Ok`.
 //!
 //! This is useful if you want to use a `?` for easily returning say, invalid input errors,
 //! but you can't do so because you have an additional `Result` level for handling internal errors of a different nature.
