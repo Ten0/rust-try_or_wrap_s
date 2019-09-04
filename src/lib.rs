@@ -8,7 +8,7 @@
 //!
 //! ```ignore
 //! fn foo(input: Input) -> Result<Result<FinalOutput, InvalidInputError>, DatabaseError> {
-//!     let validated_input: ValidatedInput = try_or_wrap!(Ok, validate_input_with_database(input)?);
+//!     let validated_input: ValidatedInput = try_or_wrap!(validate_input_with_database(input)?, Ok);
 //!     Ok(Ok(do_stuff_with_validated_input(validated_input)?))
 //! }
 //!
@@ -21,14 +21,19 @@
 /// # Example
 /// ```ignore
 /// fn foo(input: Input) -> Result<Result<FinalOutput, InvalidInputError>, DatabaseError> {
-///     let validated_input: ValidatedInput = try_or_wrap!(Ok, validate_input_with_database(input)?);
+///     let validated_input: ValidatedInput = try_or_wrap!(validate_input_with_database(input)?, Ok);
 ///     Ok(Ok(do_stuff_with_validated_input(validated_input)?))
 /// }
 ///
 /// fn validate_input_with_database(input: Input) -> Result<Result<ValidatedInput, InvalidInputError>, DatabaseError>;
 /// ````
+///
+/// Note that the `Ok` parameter as shown in this example is optional, as it defaults to `Ok` if unspecified.
 macro_rules! try_or_wrap {
-    ($wrapper:expr, $expr:expr) => {
+    ($expr:expr) => {
+        try_or_wrap! { $expr, Ok }
+    };
+    ($expr:expr, $wrapper:expr) => {
         match $expr {
             std::result::Result::Ok(val) => val,
             std::result::Result::Err(err) => {
@@ -41,7 +46,10 @@ macro_rules! try_or_wrap {
 /// Same as `try_or_wrap`, but for `Option`
 #[macro_export]
 macro_rules! try_or_wrap_opt {
-    ($wrapper:expr, $expr:expr) => {
+    ($expr:expr) => {
+        try_or_wrap_opt! { $expr, Ok }
+    };
+    ($expr:expr, $wrapper:expr) => {
         match $expr {
             std::option::Option::Some(val) => val,
             std::option::Option::None => return $wrapper(std::option::Option::None),

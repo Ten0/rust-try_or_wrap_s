@@ -13,7 +13,7 @@ This macro allows you to do so:
 
 ```rust
 fn foo(input: Input) -> Result<Result<FinalOutput, InvalidInputError>, DatabaseError> {
-    let validated_input: ValidatedInput = try_or_wrap!(Ok, validate_input_with_database(input)?);
+    let validated_input: ValidatedInput = try_or_wrap!(validate_input_with_database(input)?, Ok);
     Ok(Ok(do_stuff_with_validated_input(validated_input)?))
 }
 

@@ -1,6 +1,6 @@
 [package]
 name = "try_or_wrap_s"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Thomas BESSOU <thomas.bessou@hotmail.fr>"]
 edition = "2018"
 description = "`?` or `try!` macro, with an additional wrapping of the error in something else"
